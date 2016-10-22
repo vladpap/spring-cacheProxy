@@ -2,9 +2,11 @@ package ru.sbt.service;
 
 import ru.sbt.annotations.Cache;
 
+//@org.springframework.stereotype.Service
 public class UtilsImpl implements Utils {
 
     public UtilsImpl() {
+//        System.out.println("Start UtilsImpl");
     }
 
     @Override

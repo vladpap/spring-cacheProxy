@@ -24,6 +24,7 @@ public class CacheProxy implements InvocationHandler {
     private final StorageCache storageInFile;
 
     public CacheProxy() {
+//        System.out.println("Start CacheProxy");
         this.directoryToSaveFile = DEFAULT_DIRECTORY;
         this.delegate = null;
         this.storageInMemory = null;
@@ -104,13 +105,14 @@ public class CacheProxy implements InvocationHandler {
     }
 
     private Object getResultCacheFromFile(Object[] args, Method delegateMethod, Cache cache, String fileName) throws Throwable {
+        FilesForCache filesForCache = new FilesForCache(directoryToSaveFile);
         Object result;
         try {
             result = storageInFile.readFromStorage(fileName, cache.zip());
         } catch (FileNotFoundException e) {
             result = invoke(delegateMethod, args);
             result = getObjectAndCheckInstanceList(cache, result);
-            storageInFile.writeInStorage(result, fileName, cache.zip());
+            filesForCache.saveFile(result, fileName, cache.zip());
         }
         return result;
     }

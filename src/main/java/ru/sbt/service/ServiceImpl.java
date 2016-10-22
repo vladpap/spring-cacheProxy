@@ -8,9 +8,11 @@ import java.util.List;
 
 import static ru.sbt.annotations.CacheType.IN_FILE;
 
+//@org.springframework.stereotype.Service
 public class ServiceImpl implements Service {
 
     public ServiceImpl() {
+//        System.out.println("Start ServiceImpl");
     }
 
     @Override
